@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class ProgramaBanco {
 	public static void menu() {
 		System.out.println("1. Cadastrar");
-		System.err.println("2. Remover");
+		System.out.println("2. Remover");
 		System.out.println("3. Consultar");
 		System.out.println("4. Ajustar Limite");
 		System.out.println("5. Transferencia");
@@ -164,13 +164,26 @@ public class ProgramaBanco {
 					removePessoaF(pfs, cpf);
 					break;
 				case 3:
-					System.out.println("Informe a conta:");
-					String conta = ler.nextLine();
-					pesquisaPessoaF(pfs, conta);
+				    menuTipoCliente();
+				    opcao = ler.nextInt();
+				    clearBuffer(ler);
+				    switch (opcao) {
+	                    case 1:
+	                        System.out.println("Informe a conta:");
+	                        String conta = ler.nextLine();
+	                        pesquisaPessoaF(pfs, conta);
+	                        break;
+	                    case 2: 
+	                        System.out.println("Informe a conta:");
+                            conta = ler.nextLine();
+                            pesquisaPessoaJ(pjd, conta);
+                            break;
+	                    }
+		
 					break;
 				case 4:
 				    System.out.println("Informe a conta");
-				    conta = ler.nextLine();
+				    String conta = ler.nextLine();
 				    break;
 				case 7:
 					exibeTodosPessoaF(pfs);
