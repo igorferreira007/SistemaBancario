@@ -109,12 +109,13 @@ public class ProgramaBanco {
         }
 	}
 
-	public static void removePessoaF(PessoaFisica[] pfs, String cpf) {
-		boolean cpfInvalido = false;
+	public static void removePessoaF(PessoaFisica[] pfs, String conta) {
+		boolean contaInvalida = false;
 		for (int i = 0; i < pfs.length; i++) {
-			if (pfs[i] != null && pfs[i].getCpf().equals(cpf)) {
+			if (pfs[i] != null && pfs[i].getConta().equals(conta)) {
 				pfs[i] = null;
-				cpfInvalido = true;
+				contaInvalida = true;
+				System.out.println("Pessoa removida");
 				break;
 			}
 		}
@@ -123,6 +124,20 @@ public class ProgramaBanco {
 		}
 	}
 	
+	public static void removePessoaJ(PessoaJuridica[] pjs, String conta) {
+		boolean contaInvalida = false;
+		for (int i = 0; i < pjs.length; i++) {
+			if (pjs[i] != null && pjs[i].getConta().equals(conta)) {
+				pjs[i] = null;
+				contaInvalida = true;
+				System.out.println("Pessoa removida");
+				break;
+			}
+		}
+		if (!cpfInvalido) {
+			System.out.println("Pessoa nao cadastrada!");
+		}
+	}
 	
 	private static void clearBuffer(Scanner scanner) {
         if (scanner.hasNextLine()) {
@@ -159,9 +174,24 @@ public class ProgramaBanco {
 					}
 					break;
 				case 2:
-					System.out.println("Informe o CPF:");
-					String cpf = ler.nextLine();
-					removePessoaF(pfs, cpf);
+					menuTipoCliente();
+					opcao = ler.nextInt();
+					ler.nextLine();
+					
+					switch (opcao) {
+					case 1:
+						System.out.println("Informe a conta da PF:");
+						String contaF = ler.nextLine();
+						removePessoaF(pfs, contaF);
+						cont--;
+						break;
+					case 2:
+						System.out.println("Informe a conta da PJ:");
+						String contaJ = ler.nextLine();
+						removePessoaJ(pjd , contaJ);
+						cont--;
+						break;
+					}
 					break;
 				case 3:
 				    menuTipoCliente();
