@@ -39,5 +39,17 @@ public class PessoaJuridica extends Pessoa {
 		this.nomeFantasia = nomeFantasia;
 	}
 	
-	
+	public void consultaPessoaJ() {
+	    System.out.println("Conta: " + getConta());
+        System.out.println("Agencia:" + getAgencia());
+        System.out.println("Telefone:" + getTelefone());
+        System.out.println("Saldo:" + getSaldo());
+        System.out.println("Limite" + getLimite());
+        System.out.println("CNPJ:" + getCnpj());
+        System.out.println("Nome:" + getNome()[0]);
+        System.out.println("Nome:" + getNome()[1]);
+        System.out.println("Nome:" + getNome()[2]);
+        System.out.println("Idade:" + getRazaoSocial());
+        System.out.println("Idade:" + getNomeFantasia());
+	}
 }

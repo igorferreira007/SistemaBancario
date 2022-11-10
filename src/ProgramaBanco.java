@@ -95,6 +95,20 @@ public class ProgramaBanco {
 		}
 	}
 
+	public static void pesquisaPessoaJ(PessoaJuridica[] pfs, String conta) {
+	    boolean contaInvalida = false;
+        for (int i = 0; i < pfs.length; i++) {
+            if (pfs[i] != null && pfs[i].getConta().equals(conta)) {
+                pfs[i].consultaPessoaJ();
+                contaInvalida = true;
+                break;
+            }
+        }
+        if (!contaInvalida) {
+            System.out.println("Pessoa nao cadastrada!");
+        }
+	}
+
 	public static void removePessoaF(PessoaFisica[] pfs, String cpf) {
 		boolean cpfInvalido = false;
 		for (int i = 0; i < pfs.length; i++) {
@@ -127,7 +141,8 @@ public class ProgramaBanco {
 			menu();
 			try {
 				opcao = ler.nextInt();
-				ler = new Scanner(System.in);
+				clearBuffer(ler);
+//				ler = new Scanner(System.in);
 				switch (opcao) {
 				case 1:
 					menuTipoCliente();
@@ -141,7 +156,6 @@ public class ProgramaBanco {
 					case 2: 
 					    dadosPessoaJ(ler, cont, pjd);
 					    cont++;
-					
 					}
 					break;
 				case 2:

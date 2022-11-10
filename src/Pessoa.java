@@ -6,10 +6,6 @@ public abstract class Pessoa {
 	private double saldo;
 	private double limite;
 	
-	
-	
-	
-	
 	public Pessoa(String conta, String agencia, String telefone, double saldo, double limite) {
 		super();
 		this.conta = conta;
@@ -18,10 +14,6 @@ public abstract class Pessoa {
 		this.saldo = saldo;
 		this.limite = limite;
 	}
-
-
-
-
 
 	public String getConta() {
 		return conta;
