@@ -42,7 +42,7 @@ public class ProgramaBanco {
 		System.out.println(cont);
 	}
 
-	public static void dadosPessoaJ(Scanner ler) {
+	public static void dadosPessoaJ(Scanner ler, int cont, PessoaJuridica[] pjd) {
 		System.out.println("Conta:");
 		String conta = ler.nextLine();
 		System.out.println("Agencia:");
@@ -53,7 +53,8 @@ public class ProgramaBanco {
 		double saldo = ler.nextDouble();
 		System.out.println("Limite:");
 		double limite = ler.nextDouble();
-		System.out.println("CPF:");
+		clearBuffer(ler);
+		System.out.println("CNPJ:");
 		String cnpj = ler.nextLine();
 		System.out.println("Nome:");
 		String[] nome = new String[3];
@@ -66,7 +67,9 @@ public class ProgramaBanco {
 		String nomeFantasia = ler.nextLine();
 		PessoaJuridica p = new PessoaJuridica(conta, agencia, telefone, saldo, limite, cnpj, nome, razaoSocial,
 				nomeFantasia);
-
+		pjd[cont] = p;
+		
+	
 	}
 
 	public static void exibeTodosPessoaF(PessoaFisica[] pfs) {
@@ -106,12 +109,20 @@ public class ProgramaBanco {
 		}
 	}
 	
+	
+	private static void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner ler = new Scanner(System.in);
 		int opcao = 0;
 		int cont = 0;
 		PessoaFisica[] pfs = new PessoaFisica[50];
+		PessoaJuridica[] pjd = new PessoaJuridica[50];
 		do {
 			menu();
 			try {
@@ -127,6 +138,10 @@ public class ProgramaBanco {
 						dadosPessoaF(ler, cont, pfs);
 						cont++;
 						break;
+					case 2: 
+					    dadosPessoaJ(ler, cont, pjd);
+					    cont++;
+					
 					}
 					break;
 				case 2:
@@ -139,6 +154,10 @@ public class ProgramaBanco {
 					String conta = ler.nextLine();
 					pesquisaPessoaF(pfs, conta);
 					break;
+				case 4:
+				    System.out.println("Informe a conta");
+				    conta = ler.nextLine();
+				    break;
 				case 7:
 					exibeTodosPessoaF(pfs);
 					break;
