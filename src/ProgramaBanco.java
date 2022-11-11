@@ -119,7 +119,7 @@ public class ProgramaBanco {
 				break;
 			}
 		}
-		if (!cpfInvalido) {
+		if (!contaInvalida) {
 			System.out.println("Pessoa nao cadastrada!");
 		}
 	}
@@ -134,7 +134,7 @@ public class ProgramaBanco {
 				break;
 			}
 		}
-		if (!cpfInvalido) {
+		if (!contaInvalida) {
 			System.out.println("Pessoa nao cadastrada!");
 		}
 	}
@@ -144,6 +144,39 @@ public class ProgramaBanco {
             scanner.nextLine();
         }
 	}
+	
+	public static void adicionaSaldoF(PessoaFisica[] pfs, String conta, double valor) {
+        boolean contaInvalida = false;
+        for (int i = 0; i < pfs.length; i++) {
+            if (pfs[i] != null && pfs[i].getConta().equals(conta)) {
+                pfs[i].setSaldo(pfs[i].getSaldo() + valor);;
+                contaInvalida = true;
+                System.out.println("Saldo adicionado!");
+                break;
+            }
+        }
+        if (!contaInvalida) {
+            System.out.println("Pessoa nao cadastrada!");
+        }
+    }
+	
+	public static void adicionaSaldoJ(PessoaJuridica[] pjd, String conta, double valor) {
+        boolean contaInvalida = false;
+        for (int i = 0; i < pjd.length; i++) {
+            if (pjd[i] != null && pjd[i].getConta().equals(conta)) {
+                pjd[i].setSaldo(pjd[i].getSaldo() + valor);;
+                contaInvalida = true;
+                System.out.println("Saldo adicionado!");
+                break;
+            }
+        }
+        if (!contaInvalida) {
+            System.out.println("Pessoa nao cadastrada!");
+        }
+    }
+	
+	
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -157,7 +190,6 @@ public class ProgramaBanco {
 			try {
 				opcao = ler.nextInt();
 				clearBuffer(ler);
-//				ler = new Scanner(System.in);
 				switch (opcao) {
 				case 1:
 					menuTipoCliente();
@@ -208,12 +240,31 @@ public class ProgramaBanco {
                             conta = ler.nextLine();
                             pesquisaPessoaJ(pjd, conta);
                             break;
-	                    }
+                    }
 		
 					break;
-				case 4:
-				    System.out.println("Informe a conta");
-				    String conta = ler.nextLine();
+				case 6:
+				    menuTipoCliente();
+                    opcao = ler.nextInt();
+                    clearBuffer(ler);
+                    switch (opcao) {
+                        case 1:
+                            System.out.println("Informe a conta PF:");
+                            String conta = ler.nextLine();
+                            System.out.println("Informe o valor em R$:");
+                            double valor = ler.nextDouble();
+                            clearBuffer(ler);
+                            adicionaSaldoF(pfs, conta, valor);
+                            break;
+                        case 2: 
+                            System.out.println("Informe a conta PJ:");
+                            conta = ler.nextLine();
+                            System.out.println("Informe o valor em R$:");
+                            valor = ler.nextDouble();
+                            clearBuffer(ler);
+                            adicionaSaldoJ(pjd, conta, valor);
+                            break;
+                    }
 				    break;
 				case 7:
 					exibeTodosPessoaF(pfs);
