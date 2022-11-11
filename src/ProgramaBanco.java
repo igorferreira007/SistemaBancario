@@ -81,6 +81,23 @@ public class ProgramaBanco {
 		}
 	}
 	
+	// Exibir relatorio Juridico
+	//public static void exibeTodosPessoaJ(PessoaJuridica[] pfs) {
+	//	boolean pessoaExiste = false;
+	//	for (PessoaJuridica pessoaJuridica : pfs) {
+	//		if (pessoaJuridica != null) {
+	//			
+	//	for(int i = 0; i < pessoaJuridica.getNome().length; i++) {
+	//				System.out.println(pessoaJuridica.getNome()[i]);
+	//				pessoaExiste = true;
+	//			}
+	//		}
+	//	}
+	//	if (!pessoaExiste) {
+	//		System.out.println("Não há cadastro");
+	//	}
+	//}
+	
 	public static void pesquisaPessoaF(PessoaFisica[] pfs, String conta) {
 		boolean contaInvalida = false;
 		for (int i = 0; i < pfs.length; i++) {
@@ -267,9 +284,20 @@ public class ProgramaBanco {
                     }
 				    break;
 				case 7:
-					exibeTodosPessoaF(pfs);
-					break;
-
+					// relatorio 
+					//menuTipoCliente();
+					//opcao = ler.nextInt();
+					//ler.nextLine();
+					//
+					//switch (opcao) {
+					//case 1:
+					//	exibeTodosPessoaF(pfs);
+					//	break;
+					//case 2:
+					//	exibeTodosPessoaJ(pjd);
+					//	break;
+				
+					break
 				default:
 
 					break;
