@@ -9,7 +9,7 @@ public class ProgramaBanco {
 		System.out.println("4. Ajustar Limite");
 		System.out.println("5. Transferencia");
 		System.out.println("6. Adicionar Saldo");
-		System.out.println("7.Relatorio de Clientes");
+		System.out.println("7. Relatorio de Clientes");
 		System.out.println("8. Sair");
 	}
 
@@ -81,6 +81,16 @@ public class ProgramaBanco {
 		}
 	}
 	
+//	TESTE - IGOR
+//	public static void exibeTodosPessoaJ(PessoaJuridica[] pfs) {
+//	    for (PessoaJuridica pessoaJuridica : pfs) {
+//            if (pessoaJuridica != null) {
+//                System.out.println(pessoaJuridica.getNome());
+//                
+//            }
+//        }
+//	}
+	
 	public static void pesquisaPessoaF(PessoaFisica[] pfs, String conta) {
 		boolean contaInvalida = false;
 		for (int i = 0; i < pfs.length; i++) {
@@ -124,6 +134,7 @@ public class ProgramaBanco {
 		}
 	}
 	
+<<<<<<< Updated upstream
 	public static void removePessoaJ(PessoaJuridica[] pjs, String conta) {
 		boolean contaInvalida = false;
 		for (int i = 0; i < pjs.length; i++) {
@@ -138,6 +149,22 @@ public class ProgramaBanco {
 			System.out.println("Pessoa nao cadastrada!");
 		}
 	}
+=======
+//	public static void removePessoaJ(PessoaJuridica[] pjd, String cnpj) {
+//	    boolean cnpjInvalido = false;
+//        for (int i = 0; i < pjd.length; i++) {
+//            if (pjd[i] != null && pjd[i].getCnpj().equals(cnpj)) {
+//                pjd[i] = null;
+//                cnpjInvalido = true;
+//                break;
+//            }
+//        }
+//        if (!cnpjInvalido) {
+//            System.out.println("Pessoa nao cadastrada!");
+//        }
+//	}
+	
+>>>>>>> Stashed changes
 	
 	private static void clearBuffer(Scanner scanner) {
         if (scanner.hasNextLine()) {
@@ -191,6 +218,7 @@ public class ProgramaBanco {
 				opcao = ler.nextInt();
 				clearBuffer(ler);
 				switch (opcao) {
+<<<<<<< Updated upstream
 				case 1:
 					menuTipoCliente();
 					opcao = ler.nextInt();
@@ -271,9 +299,71 @@ public class ProgramaBanco {
 					break;
 
 				default:
+=======
+    				case 1:
+    					menuTipoCliente();
+    					opcao = ler.nextInt();
+    					ler.nextLine();
+    					switch (opcao) {
+    					case 1:
+    						dadosPessoaF(ler, cont, pfs);
+    						cont++;
+    						break;
+    					case 2: 
+    					    dadosPessoaJ(ler, cont, pjd);
+    					    cont++;
+    					}
+    					break;
+    				case 2:
+    				    menuTipoCliente();
+                        opcao = ler.nextInt();
+                        clearBuffer(ler);
+                        switch (opcao) {
+                            case 1:
+                                System.out.println("Informe o CPF:");
+                                String cpf = ler.nextLine();
+                                removePessoaF(pfs, cpf);
+                                break;
+>>>>>>> Stashed changes
 
-					break;
-				}
+                            case 2:
+                                System.out.println("Informe o CPF:");
+                                String cnpj = ler.nextLine();
+                                removePessoaJ(pjd, cnpj);
+                                break;
+                        }
+    					
+    					break;
+    				case 3:
+    				    menuTipoCliente();
+    				    opcao = ler.nextInt();
+    				    clearBuffer(ler);
+    				    switch (opcao) {
+    	                    case 1:
+    	                        System.out.println("Informe a conta:");
+    	                        String conta = ler.nextLine();
+    	                        pesquisaPessoaF(pfs, conta);
+    	                        break;
+    	                    case 2: 
+    	                        System.out.println("Informe a conta:");
+                                conta = ler.nextLine();
+                                pesquisaPessoaJ(pjd, conta);
+                                break;
+    	                    }
+    		
+    					break;
+        				case 4:
+        				    System.out.println("Informe a conta");
+        				    String conta = ler.nextLine();
+        				    break;
+        				case 7:
+                            exibeTodosPessoaF(pfs);
+        					break;
+        
+        				default:
+        
+        					break;
+    				}
 
 			} catch (InputMismatchException e) {
 				System.out.println("Digite um valor correto!");
