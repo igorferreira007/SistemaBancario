@@ -11,8 +11,6 @@ public class PessoaFisica extends Pessoa {
 		this.nome = nome;
 		this.idade = idade;
 	}
-	
-	
 
 	public void consultaPessoaF() {
 		System.out.println("Conta: " + getConta());
