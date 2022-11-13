@@ -1,3 +1,5 @@
+
+
 import java.util.Scanner;
 
 public class Controla {
@@ -86,11 +88,11 @@ public class Controla {
         boolean pessoaExiste = false;
         System.out.println("Clientes PJ:");
         for (PessoaJuridica pessoaJuridica : pfs) {
-        if (pessoaJuridica != null) {
+            if (pessoaJuridica != null) {
 
-            System.out.println("Razão Social: " + pessoaJuridica.getRazaoSocial());
+                System.out.println("Razão Social: " + pessoaJuridica.getRazaoSocial());
 
-        }
+            }
         }
 
     }
@@ -173,7 +175,7 @@ public class Controla {
             System.out.println("Pessoa nao cadastrada!");
         }
     }
-    
+
     public static void adicionaSaldoJ(PessoaJuridica[] pjd, String conta, double valor) {
         boolean contaInvalida = false;
         for (int i = 0; i < pjd.length; i++) {
@@ -219,48 +221,6 @@ public class Controla {
             System.out.println("Pessoa nao cadastrada!");
         }
     }
-    
-    public static void transfereDinheiroF(PessoaFisica[] pfs, String contaOrigem, String contaDestino, double valor) {
-        boolean contaInvalida = false;
-    
-        for (int i = 0; i < pfs.length; i++) {
-            if (pfs[i] != null && pfs[i].getConta().equals(contaOrigem)) {
-                pfs[i].setSaldo(pfs[i].getSaldo() - valor);
-                for (int j = 0; j < pfs.length; j++) {
-                    if (pfs[j] != null && pfs[j].getConta().equals(contaDestino)) {
-                        pfs[j].setSaldo(pfs[j].getSaldo() + valor);
-                        contaInvalida = true;
-                        System.out.println("Saldo adicionado!");
-                        break;
-                    }
-                }
-                break;
-            }
-        }
-        if (!contaInvalida) {
-            System.out.println("Pessoa nao cadastrada!");
-        }
-    }
-    
-    public static void transfereDinheiroJ(PessoaJuridica[] pjd, String contaOrigem, String contaDestino, double valor) {
-        boolean contaInvalida = false;
-    
-        for (int i = 0; i < pjd.length; i++) {
-            if (pjd[i] != null && pjd[i].getConta().equals(contaOrigem)) {
-                pjd[i].setSaldo(pjd[i].getSaldo() - valor);
-                for (int j = 0; j < pjd.length; j++) {
-                    if (pjd[j] != null && pjd[j].getConta().equals(contaDestino)) {
-                        pjd[j].setSaldo(pjd[j].getSaldo() + valor);
-                        contaInvalida = true;
-                        System.out.println("Saldo adicionado!");
-                        break;
-                    }
-                }
-                break;
-            }
-        }
-        if (!contaInvalida) {
-            System.out.println("Pessoa nao cadastrada!");
-        }
-    }
+
+
 }

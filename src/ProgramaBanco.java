@@ -1,9 +1,10 @@
 
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ProgramaBanco {
-    
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Scanner ler = new Scanner(System.in);
@@ -73,60 +74,66 @@ public class ProgramaBanco {
                         Controla.menuTipoCliente();
                         opcao = ler.nextInt();
                         Controla.clearBuffer(ler);
-                           switch (opcao) {
-                               case 1:
-                                   System.out.println("Informe a conta PF:");
-                                   String conta = ler.nextLine();
-                                   double limite = 0;
-                                   while (limite < 0) {
-                                       System.out.println("Informe o novo limite:");
-                                        limite = ler.nextDouble();
-                                        Controla.clearBuffer(ler);
-                                   }
-                                   Controla.ajustaLimitePF(pfs, conta, limite);
-                                   break;
-                               case 2:
-                                   System.out.println("Informe a conta PJ:");
-                                   conta = ler.nextLine();
-                                   limite = 0;
-                                   while (limite < 0) {
-                                       System.out.println("Informe o novo limite:");
-                                       limite = ler.nextDouble();
-                                       if (limite < 0) {
-                                           System.out.println("Digite um valor válido!");
-                                       }
-                                   }
-                                   Controla.ajustaLimitePJ(pjd, conta, limite);
-                                   break;
-                           }
+                        switch (opcao) {
+                            case 1:
+                                System.out.println("Informe a conta PF:");
+                                String conta = ler.nextLine();
+                                double limite = 0;
+                                while (limite < 0) {
+                                    System.out.println("Informe o novo limite:");
+                                    limite = ler.nextDouble();
+                                    Controla.clearBuffer(ler);
+                                }
+                                Controla.ajustaLimitePF(pfs, conta, limite);
+                                break;
+                            case 2:
+                                System.out.println("Informe a conta PJ:");
+                                conta = ler.nextLine();
+                                limite = 0;
+                                while (limite < 0) {
+                                    System.out.println("Informe o novo limite:");
+                                    limite = ler.nextDouble();
+                                    if (limite < 0) {
+                                        System.out.println("Digite um valor válido!");
+                                    }
+                                }
+                                Controla.ajustaLimitePJ(pjd, conta, limite);
+                                break;
+                        }
                         break;
                     case 5:
+                        boolean destino = false;
+                        boolean origem = false;
                         System.out.println("Selecione o tipo de conta da origem:");
                         Controla.menuTipoCliente();
                         opcao = ler.nextInt();
                         Controla.clearBuffer(ler);
                         switch (opcao) {
                             case 1:
-                                System.out.println("Informe a conta de origem PF");
-                                String contaOrigen = ler.nextLine();
-                                System.out.println("Digite o valor a ser transferido");
-                                double valor = ler.nextDouble();
-                                Controla.clearBuffer(ler);
-                                System.out.println("Informe a conta de destino PF");
-                                String contaDestino = ler.nextLine();
-                                Controla.transfereDinheiroF(pfs, contaOrigen, contaDestino, valor);
+                                /*true = conta PF | false = conta PJ */
+                                origem = true;
                                 break;
                             case 2:
-                                System.out.println("Informe a conta de origem PJ");
-                                contaOrigen = ler.nextLine();
-                                System.out.println("Digite o valor a ser transferido");
-                                valor = ler.nextDouble();
-                                Controla.clearBuffer(ler);
-                                System.out.println("Informe a conta de destino PJ");
-                                contaDestino = ler.nextLine();
-                                Controla.transfereDinheiroJ(pjd, contaOrigen, contaDestino, valor);
+                                origem = false;
                                 break;
                         }
+                        System.out.println("Selecione o tipo de conta da destino:");
+                        Controla.menuTipoCliente();
+                        opcao = ler.nextInt();
+                        Controla.clearBuffer(ler);
+                        switch (opcao) {
+                            case 1:
+                                destino = true;
+                                break;
+
+
+                            case 2:
+                                destino = false;
+                                break;
+
+                        }
+                        transferencia.transferirDinheiro(pjd, pfs, ler, origem, destino);
+
                         break;
                     case 6:
                         Controla.menuTipoCliente();
@@ -159,7 +166,7 @@ public class ProgramaBanco {
                         Controla.exibeTodosPessoaJ(pjd);
                         break;
                     default:
-                        
+
                         break;
                 }
 
