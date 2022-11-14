@@ -10,8 +10,9 @@ public class Controla {
         System.out.println("4. Ajustar Limite");
         System.out.println("5. Transferencia");
         System.out.println("6. Adicionar Saldo");
-        System.out.println("7.Relatorio de Clientes");
-        System.out.println("8. Sair");
+        System.out.println("7. Relatorio de Clientes");
+        System.out.println("8. Contratar Empréstimo");
+        System.out.println("9. Sair");
     }
 
     public static void menuTipoCliente() {
@@ -20,13 +21,13 @@ public class Controla {
     }
 
     public static void dadosPessoaF(Scanner ler, int cont, PessoaFisica[] pfs) {
-        System.out.println("Conta:");
+        System.out.println("Conta: ");
         String conta = ler.nextLine();
-        System.out.println("Agencia:");
+        System.out.println("Agencia: ");
         String agencia = ler.nextLine();
-        System.out.println("Telefone:");
+        System.out.println("Telefone: ");
         String telefone = ler.nextLine();
-        System.out.println("Saldo:");
+        System.out.println("Saldo: ");
         double saldo = ler.nextDouble();
         System.out.println("Limite:");
         double limite = ler.nextDouble();
@@ -75,9 +76,10 @@ public class Controla {
 
     public static void exibeTodosPessoaF(PessoaFisica[] pfs) {
         System.out.println("Clientes PF:");
+        System.out.println("");
         for (PessoaFisica pessoaFisica : pfs) {
             if (pessoaFisica != null) {
-                System.out.println("Nome do Cliente:" + pessoaFisica.getNome());
+                System.out.println("Nome do Cliente: " + pessoaFisica.getNome());
 
             }
         }
@@ -87,6 +89,7 @@ public class Controla {
     public static void exibeTodosPessoaJ(PessoaJuridica[] pfs) {
         boolean pessoaExiste = false;
         System.out.println("Clientes PJ:");
+        System.out.println("");
         for (PessoaJuridica pessoaJuridica : pfs) {
             if (pessoaJuridica != null) {
 
@@ -219,6 +222,61 @@ public class Controla {
         }
         if (!contaInvalida) {
             System.out.println("Pessoa nao cadastrada!");
+        }
+    }
+
+    public static void contratarEmprestimo (PessoaFisica[] pfs, PessoaJuridica[] pjd, boolean pessoaFisica, Scanner ler) {
+        boolean contaInvalida = false;
+        if (pessoaFisica) {
+            System.out.println("Digite a conta PF:");
+            String conta = ler.nextLine();
+            System.out.println("Digite o valor do emprestimo:");
+            double valor = ler.nextDouble();
+            System.out.println("Digite a taxa de juros:");
+            double juros = (ler.nextDouble() / 100);
+            System.out.println("Digite o numero de parcelas:");
+            int parcelas = ler.nextInt();
+
+
+            for (int i = 0; i < pfs.length; i++) {
+                if (pfs[i] != null && pfs[i].getConta().equals(conta)) {
+                    pfs[i].setSaldo(pfs[i].getSaldo() + valor);
+                    pfs[i].contratar(valor, juros, parcelas);
+                    contaInvalida = true;
+                    System.out.println("Emprestimo contratado!");
+                    System.out.printf("Valor total contratado = %.2f\n", valor + (valor * juros * parcelas));
+                    break;
+                }
+            }
+            if (contaInvalida = false) {
+                System.out.println("Pessoa nao cadastrada!");
+            }
+
+        } else {
+            System.out.println("Digite a conta PJ:");
+            String conta = ler.nextLine();
+            System.out.println("Digite o valor do emprestimo:");
+            double valor = ler.nextDouble();
+            System.out.println("Digite a taxa de juros:");
+            double juros = (ler.nextDouble() / 100);
+            System.out.println("Digite o numero de parcelas:");
+            int parcelas = ler.nextInt();
+
+
+            for (int i = 0; i < pfs.length; i++) {
+                if (pjd[i] != null && pjd[i].getConta().equals(conta)) {
+                    pjd[i].setSaldo(pjd[i].getSaldo() + valor);
+                    pjd[i].contratar(valor, juros, parcelas);
+                    contaInvalida = true;
+                    System.out.println("Emprestimo contratado!");
+                    System.out.printf("Valor total contratado = %.2f\n", valor + (valor * juros * parcelas));
+                    break;
+                }
+            }
+            if (contaInvalida = false) {
+                System.out.println("Pessoa nao cadastrada!");
+            }
+
         }
     }
 

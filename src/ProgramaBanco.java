@@ -64,6 +64,7 @@ public class ProgramaBanco {
                                 Controla.pesquisaPessoaF(pfs, conta);
                                 break;
                             case 2:
+
                                 System.out.println("Informe a conta:");
                                 conta = ler.nextLine();
                                 Controla.pesquisaPessoaJ(pjd, conta);
@@ -78,18 +79,21 @@ public class ProgramaBanco {
                             case 1:
                                 System.out.println("Informe a conta PF:");
                                 String conta = ler.nextLine();
-                                double limite = 0;
+                                double limite = -1;
                                 while (limite < 0) {
                                     System.out.println("Informe o novo limite:");
                                     limite = ler.nextDouble();
                                     Controla.clearBuffer(ler);
+                                    if (limite < 0) {
+                                        System.out.println("Digite um valor válido!");
+                                    }
                                 }
                                 Controla.ajustaLimitePF(pfs, conta, limite);
                                 break;
                             case 2:
                                 System.out.println("Informe a conta PJ:");
                                 conta = ler.nextLine();
-                                limite = 0;
+                                limite = -1;
                                 while (limite < 0) {
                                     System.out.println("Informe o novo limite:");
                                     limite = ler.nextDouble();
@@ -100,6 +104,7 @@ public class ProgramaBanco {
                                 Controla.ajustaLimitePJ(pjd, conta, limite);
                                 break;
                         }
+
                         break;
                     case 5:
                         boolean destino = false;
@@ -160,11 +165,24 @@ public class ProgramaBanco {
                         break;
                     case 7:
                         // relatorio
-                        System.out.println("Pessoas FISICAS");
                         Controla.exibeTodosPessoaF(pfs);
-                        System.out.println("Pessoas JURIDICAS");
                         Controla.exibeTodosPessoaJ(pjd);
                         break;
+                    case 8:
+                        Controla.menuTipoCliente();
+                        opcao = ler.nextInt();
+                        Controla.clearBuffer(ler);
+                        boolean pessoaFisica = false;
+                        switch (opcao) {
+                            case 1:
+                                pessoaFisica = true;
+                                break;
+                            case 2:
+                                pessoaFisica = false;
+                                break;
+                        }
+                        Controla.contratarEmprestimo(pfs, pjd, pessoaFisica, ler);
+
                     default:
 
                         break;
@@ -174,7 +192,7 @@ public class ProgramaBanco {
                 System.out.println("Digite um valor correto!");
             }
 
-        } while (opcao != 8);
+        } while (opcao != 9);
 
     }
 

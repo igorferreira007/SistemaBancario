@@ -1,5 +1,4 @@
 
-
 public class PessoaFisica extends Pessoa {
     private String cpf;
     private String nome;
@@ -15,13 +14,19 @@ public class PessoaFisica extends Pessoa {
 
     public void consultaPessoaF() {
         System.out.println("Conta: " + getConta());
-        System.out.println("Agencia:" + getAgencia());
-        System.out.println("Telefone:" + getTelefone());
-        System.out.println("Saldo:" + getSaldo());
-        System.out.println("Limite" + getLimite());
-        System.out.println("CPF:" + getCpf());
-        System.out.println("Nome:" + getNome());
-        System.out.println("Idade:" + getIdade());
+        System.out.println("Agencia: " + getAgencia());
+        System.out.println("Telefone: " + getTelefone());
+        System.out.println("Saldo: " + getSaldo());
+        System.out.println("Limite: " + getLimite());
+        System.out.println("CPF: " + getCpf());
+        System.out.println("Nome: " + getNome());
+        System.out.println("Idade: " + getIdade());
+        if (getValor() > 0) {
+            System.out.println("Valor do empréstimo: R$ " + getValor());
+            System.out.println("Taxa de juros: " + (getJuros() * 100) + "% a.m");
+            System.out.println("Numero de parcelas: " + getParcelas());
+            System.out.println("Total do contrato: R$ " + (getValor() + (getValor() * getJuros() * getParcelas())));
+        }
     }
 
     public String getCpf() {

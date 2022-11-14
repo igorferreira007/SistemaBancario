@@ -7,6 +7,11 @@ public abstract class Pessoa {
     private double saldo;
     private double limite;
 
+    private boolean temEmprestimo;
+    private double valEmprestimo;
+    private double juros;
+    private int parcelas;
+
     public Pessoa(String conta, String agencia, String telefone, double saldo, double limite) {
         super();
         this.conta = conta;
@@ -14,7 +19,12 @@ public abstract class Pessoa {
         this.telefone = telefone;
         this.saldo = saldo;
         this.limite = limite;
+        this.temEmprestimo = false;
+        this.valEmprestimo = 0;
+        this.juros = 0;
+        this.parcelas = 0;
     }
+
 
     public String getConta() {
         return conta;
@@ -55,4 +65,18 @@ public abstract class Pessoa {
     public void setLimite(double limite) {
         this.limite = limite;
     }
+
+    public void contratar(double valor, double juros, int parcelas) {
+        this.valEmprestimo = valor;
+        this.juros = juros;
+        this.parcelas = parcelas;
+
+        double valorTotal = (valor + (valor * (juros * parcelas)));
+    }
+
+    public double getValor() {return valEmprestimo;}
+
+    public double getJuros() {return juros;}
+
+    public int getParcelas() {return parcelas;}
 }
